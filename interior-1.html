@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interior-1</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <style>
+        html,body{scroll-behavior: smooth;}
+        section {height: 100vh;}
+        .sec1 {background: url(./images/bg1.jpg) no-repeat;}
+        .sec2 {background: url(./images/bg2.jpg) no-repeat;}
+        .sec3 {background: url(./images/bg3.jpg) no-repeat;}
+        .sec4 {background: url(./images/bg4.jpg) no-repeat;}
+        .link {position:fixed; right:0; top:55%;}
+        a {position:absolute; right:40px; width:30px; height:30px; border-radius: 50%; background-color: #000; transition: all 0.3s;}
+        a:nth-child(1) {top:0;}
+        a:nth-child(2) {top:35px;}
+        a:nth-child(3) {top:70px;}
+        a:nth-child(4) {top:105px;}
+        a:hover{width:100px; border-radius:10px;  text-align: center; background: rgba(0,0,0,0.5);}
+        a:nth-child(1):hover::after {content:'Interior A';line-height: 30px; color:#fff;}
+        a:nth-child(2):hover::after {content:'Interior B';line-height: 30px; color:#fff;}
+        a:nth-child(3):hover::after {content:'Interior C';line-height: 30px; color:#fff;}
+        a:nth-child(4):hover::after {content:'Interior D';line-height: 30px; color:#fff;}
+        a:first-child {margin-top: 0;}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="link">
+            <a href="#" class="a" title="인테리어 a형 보기"></a>
+            <a href="#" class="b" title="인테리어 b형 보기"></a>
+            <a href="#" class="c" title="인테리어 c형 보기"></a>
+            <a href="#" class="d" title="인테리어 d형 보기"></a>
+        </div>
+    </header>
+    <main>
+        <section class="sec1">1</section>
+        <section class="sec2">2</section>
+        <section class="sec3">3</section>
+        <section class="sec4">4</section>
+    </main>
+    <script>
+/*         const btn = document.querySelectorAll('.link a')
+        const sec = document.querySelectorAll('section')
+        console.log(sec,btn)
+        btn[0].addEventListener('click',(e)=>{
+            e.preventDefault()
+                    window.scrollTo(0,sec[0].offsetTop)
+            })
+        btn[1].addEventListener('click',(e)=>{
+            e.preventDefault()
+                    window.scrollTo(0,sec[1].offsetTop)
+            })
+        btn[2].addEventListener('click',(e)=>{
+            e.preventDefault()
+                    window.scrollTo(0,sec[2].offsetTop)
+            })
+        btn[3].addEventListener('click',(e)=>{
+            e.preventDefault()
+                    window.scrollTo(0,sec[3].offsetTop)
+            })
+ */
+/*             btn.forEach((i,index)=>{
+            i.addEventListener('click',(e)=>{
+                e.preventDefault()
+                window.scrollTo(0,sec[index].offsetTop)
+            })
+        }) */
+        //link-a 첫번째 클릭 -> main-section 첫 번째 이동
+        const link = document.querySelectorAll('.link a')
+        const section = document.querySelectorAll('main > section')
+        console.log(link, section)
+
+        for(let i in section){
+            console.log(section[i].offsetTop)
+        }
+
+        link.forEach((obj, index)=>{
+            console.log(obj,index)
+            obj.addEventListener('click',(e)=>{
+                e.preventDefault()
+                window.scrollTo(0,section[index].offsetTop)
+            })
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interior-3</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <style>
+        html,body{scroll-behavior: smooth; margin:0;}
+        header{position:fixed; width:100%; left:0; top:0; padding: 50px;}
+        header h1 {font-size: 2.5rem; font-weight: 800;}
+        header nav {display: flex;align-items: center; flex-flow: row nowrap;}
+        header nav a {line-height: 50px; color:#222; padding:0 20px;}
+        main section {height: 93vh; background-size: cover;}
+        main .sec1 {background: url(./images/bg1.jpg) no-repeat;}
+        main .sec2 {background: url(./images/bg2.jpg) no-repeat;}
+        main .sec3 {background: url(./images/bg3.jpg) no-repeat;}
+        main .sec4 {background: url(./images/bg4.jpg) no-repeat;}
+        main aside {position: fixed; left: 4%; top:48%;
+        display: flex;flex-flow: column nowrap;
+        }
+        main aside span {width: 25px; height: 3px; display: block; background: #222; margin-top: 10px;}
+        main aside span:first-child {margin-top: 0px;}
+        .bar {transition: all 0.5s;}
+        .bar_active {background: #fff; width: 100px;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interior view</h1>
+        <nav>
+            <a href="#" class="a" title="인테리어 a형 보기">A</a>
+            <a href="#" class="b" title="인테리어 b형 보기">B</a>
+            <a href="#" class="c" title="인테리어 c형 보기">C</a>
+            <a href="#" class="d" title="인테리어 d형 보기">D</a>
+        </nav>
+    </header>
+    <main>
+        <section class="sec1">1</section>
+        <section class="sec2">2</section>
+        <section class="sec3">3</section>
+        <section class="sec4">4</section>
+        <aside>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </aside>
+    </main>
+    <script>
+
+        //1. 특정위치까지 스크롤 내릴 시 header 이동(nav유지)
+        //2. nav-a 클릭 시 각 section 영역 이동
+        const bar = document.querySelectorAll('aside .bar')
+        const nav = document.querySelectorAll('nav a')
+        const section = document.querySelectorAll('main > section')
+        console.log(bar, nav, section)
+
+        // })
+        nav.forEach((i,index)=>{
+                i.addEventListener('click',(e)=>{
+                        e.preventDefault() //href 막기
+                        window.scrollTo(0,section[index].offsetTop)
+                    })
+                })
+                bar_reset(0) //초기 bar
+        window.addEventListener('scroll',()=>{
+            if(window.pageYOffset >= section[0].offsetTop){bar_reset(0)}
+            if(window.pageYOffset >= section[1].offsetTop-400){bar_reset(1)}
+            if(window.pageYOffset >= section[2].offsetTop-400){bar_reset(2)}
+            if(window.pageYOffset >= section[3].offsetTop-400){bar_reset(3)}
+
+        })
+        function bar_reset(num){
+            for(let i of bar){i.classList.remove('bar_active')}/* 쌓이면 안 될 때에는 모두 지우고 새로 추가한다. */
+        bar[num].classList.add('bar_active')
+        }
+
+/*         nav.forEach((obj, index)=>{
+            console.log(obj,index)
+            obj.addEventListener('click',(e)=>{
+                e.preventDefault()
+                window.scrollTo(0,section[index].offsetTop)
+                if(window.pageYOffset s= section[0].offsetTop){
+                    logo.classList.add('h_scroll')
+                }else[logo.classList.remove('h_scroll')]
+            })
+        }) */
+
+    </script>
+</body>
+</html>

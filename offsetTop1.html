@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>offsetTop</title>
+    <style>
+        body,html {
+            height:300vh;
+            scroll-behavior: smooth;
+            background:linear-gradient(aqua, yellow,pink,coral)
+        }
+        .box {height: 100vh; border:5px solid #000;}
+        .box1 {}
+        .box2 {}
+        .box3 {}
+        #go {position: fixed; left:50px; top:50px; padding:50px;}
+    </style>
+</head>
+<body>
+    <button type="button" id="go">GO</button>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <script>
+
+        //go 클릭 -> box2 위치(offsetTop) 이동(scrollTo)
+        const go = document.querySelector('#go')
+        const box = document.querySelectorAll('.box')
+        go.addEventListener('click',()=>{
+            window.scrollTo(0, box[1].offsetTop)
+        })/* 스크롤 기반이 아니라 클릭 기반. 스크롤 이벤트에 넣지 않음. */
+        //event
+        //click, mouseover, mouseout, change ..... 등
+        //scroll event == 'scroll'
+        //매개변수에는 이벤트 정보가 들어간다.
+        window.addEventListener('scroll',(e)=>{
+            console.log(e)
+        })
+
+    </script>
+</body>
+</html>
