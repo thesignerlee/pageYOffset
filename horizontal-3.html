@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>horizontal-3</title>
+    <style>
+    ::-webkit-scrollbar {width:200px; height:200px;}
+    ::-webkit-scrollbar-track {background:#f1f1f1; box-shadow: inset 0 0 5px blue;}
+    ::-webkit-scrollbar-thumb {
+        background:yellow; border-radius: 25px;
+    }
+        *{box-sizing:border-box; margin:0; padding:0;}
+        body,html {width: max-content; overflow-y: hidden; overflow-x: auto; scroll-behavior: auto;}
+        main {}
+        main section {}
+        main section .bg {
+            width: 7000px; height:105vh;
+            background:
+            url(./images/game_background_2/layers/rocks_3.png),
+            url(./images/game_background_2/layers/rocks_2.png),
+            url(./images/game_background_2/layers/rocks_1.png),
+            url(./images/game_background_2/layers/pines.png),
+            url(./images/game_background_2/layers/birds.png),
+            url(./images/game_background_2/layers/clouds_3.png),
+            url(./images/game_background_2/layers/clouds_2.png),
+            url(./images/game_background_2/layers/clouds_1.png),
+            url(./images/game_background_3/game_background_3.1.png)
+            ;
+            /* 통합 속성에 묻히지 않기 위해 통합 속성 밑에 적어야 할 것들. */
+            background-position: 50px 48px, right bottom, left 50%, center, center, center, center,center,center;
+            background-attachment: scroll, fixed, scroll, fixed, fixed, scroll, fixed, scroll, scroll;
+            background-size: 50%, 1000px, 2000px, cover;
+            background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, no-repeat, repeat-x, repeat-x, repeat-x, repeat-x;
+        }
+        main section .bg h1 {
+            font-size:10rem; font-weight: 600;
+            text-align: center; line-height: 105vh;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <div class="bg">
+                <h1>Portfolio 2023</h1>
+            </div>
+        </section>
+    </main>
+    <script>
+
+/*         document.body.addEventListener('wheel',(e)=>{
+            body.scrollLeft += e.deltaY
+        }) 버그 있음 */
+        const bd = document.querySelector('html,body')
+
+        bd.addEventListener('wheel',(e)=>{
+            bd.scrollLeft += e.deltaY
+        })
+
+    </script>
+</body>
+</html>
