@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video-3</title>
+    <style>
+        * {box-sizing: border-box; margin:0; padding:0;}
+        body {height:500vh; overflow-x:hidden;}
+        /* 실제 작업할 때 컨테이너나 메인 같은 대상에 높이값을 줄 것. */
+        .container {}
+        .container img {
+            width:100%;
+            position: fixed; left:0; top:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="./images/videos/1.jpg" alt="">
+        <!-- 이미지와 겹치는 대상 위치 -->
+    </div>
+    <!-- 블록 인라인 구분하면서 이미지와 겹치는 대상 작업을  하고 싶을 때는, 하나의 부모로 묶고 이미지를 묶는 div와 형제로 두고 작업하기. -->
+    <script>
+        //마우스 스크롤 움직임에 따라 이미지 변화(동영상 이미지 변환)
+        const imgElem = document.querySelector('.container img')
+        let totalImageCount = 50 // 총 이미지 개수를 생성.
+        let videoImages = [] // 빈 배열 생성 , 아니면 new Array()라고 기재해도 됨. []와 같은 말.
+        //1~282 이미지 생성
+        setImages()
+        init()
+        function setImages(){//1~282 이미지 생성 함수
+            for(let i=1; i<=totalImageCount; i++){
+                //<img>생성
+                let imgE = document.createElement('img') //<img> 생성, for문 밖으로 나가면 문제 생김. 반복적으로 만들어야 하는 게 빠지면 무엇.
+                //<img src="./images/video/${i}.jpg"> 대입
+                imgE.src = `./images/videos/${i}.jpg`
+                console.log(imgE)
+                videoImages.push(imgE)
+            }
+        }
+        function init(){//스크롤 동작 함수
+            window.addEventListener('scroll',()=>{
+                //pageYOffset 문서에서 스크롤한 진행값
+                //document.body.offsetHeight 문서의 전체 높이, body는 따로 변수를 안 만들어줘서 1회성 값으로 사용.
+                //window.innerHeight 마지막 100vh 스크롤되지 않는 공간 빼기
+                //-> document.body.offsetHeight-window.innerHeight
+                //pageYOffset / document.body.offsetHeight
+                //pageYOffset / (위 계산식)
+                //스크롤 가능 높이에서 내가 스크롤을 얼마나 진행했는가? - progress
+                let progress = pageYOffset / (document.body.offsetHeight - window.innerHeight) // 전체 바디가 offsetHeight. 마지막 한 공간은 스크롤이 안 됨. 이게 window.innerHeight. 이것을 뺀 나머지를 pageYOffset에 나누는 것. 쉽게 생각해서 스크롤 하는 값을 정교하게 뽑겠다는 식.
+                
+                //스크롤 진행값과 이미지의 개수를 곱해서 반올림 후 변수 대입, 안 하면 소수점 겁나 생김
+                //반올림 진행 시 이미지 개수+1이 되므로 totalImageCount -1처리
+                let currentFrame = Math.round((totalImageCount-1) * progress) //반올림 하는 속성, 반올림할 때 함수값에 초과한 값이 나올 수 있으므로 -1
+            // console.log(`progress>>${progress},
+            // currentFrame>>${currentFrame}`)
+
+            //imgElem.src == <img src="./images/video/1.jpg" alt="">
+                imgElem.src = videoImages[currentFrame].src
+                // videoImages[currentFrame].src에서 src 안 넣으면 imgElem.src == <img src="<img src="">" alt="">이 된다는 뜻. //src 생략할 경우
+                //imgElem.src == <img src=`./images/video/${i}.jpg` alt=""> 제대로 넣은 경우. 값만 가져오게 됨.
+            })
+        }
+
+    </script>
+</body>
+</html>
